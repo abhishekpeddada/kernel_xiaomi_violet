@@ -1,0 +1,12 @@
+#!/bin/bash
+OUT_DIR=out/
+
+make ARCH=arm64 \
+	O=${OUT_DIR} \
+	vendor/violet-perf_defconfig \
+	-j4
+
+cp ${OUT_DIR}/.config arch/arm64/configs/vendor/violet-perf_defconfig
+
+git add arch/
+git commit -s -m "ARM64: configs: violet: Regenerate defconfig"
